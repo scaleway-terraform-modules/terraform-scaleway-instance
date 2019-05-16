@@ -2,7 +2,7 @@ resource "scaleway_server" "server" {
   enable_ipv6 = "${var.enable_ipv6}"
   image       = "${var.image_name}"
   name        = "${var.server_name}"
-  state       = "stopped"
+  state       = "${var.server_state}"
   type        = "${var.server_type}"
 }
 

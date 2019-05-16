@@ -21,10 +21,15 @@ variable "server_name" {
   default     = "server"
 }
 
+variable "server_state" {
+  type        = "string"
+  description = "Server state; either stopped or running Default to 'stopped"
+  default     = "stopped"
+}
+
 variable "server_type" {
   type        = "string"
   description = "Server type. Default to 'C1'"
   default     = "C1"
   #  default     = "DEV1-S"
-
 }
