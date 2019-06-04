@@ -1,9 +1,11 @@
 variable "enable_ipv4" {
+  type        = bool
   description = "If set to True, server will have a public IPv4 address. Default to false."
   default     = false
 }
 
 variable "enable_ipv6" {
+  type        = bool
   description = "If set to True, server will be IPv6 enable. Default to false."
   default     = false
 }

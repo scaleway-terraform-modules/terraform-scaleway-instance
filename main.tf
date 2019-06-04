@@ -7,7 +7,7 @@ resource "scaleway_server" "server" {
 }
 
 resource "scaleway_ip" "public_ipv4" {
-  count  = var.enable_ipv4
+  count  = var.enable_ipv4 == true ? 1 : 0
   server = scaleway_server.server.id
 }
 
