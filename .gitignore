@@ -1,5 +1,8 @@
-# ignore folder .terraform
+# ignore folders ".terraform"
 **/.terraform
+
+# ignore terraform state files
+**/terraform.tfstate*
 
 # ignore log files
 **/*.log
