@@ -1,0 +1,5 @@
+# ignore folder .terraform
+**/.terraform
+
+# ignore log files
+**/*.log
