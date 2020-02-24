@@ -2,7 +2,7 @@ resource "scaleway_instance_server" "instance_with_ip" {
   count       = var.enable_ipv4 == true ? 1 : 0
   enable_ipv6 = var.enable_ipv6
   image       = var.image_name
-  ip_id       = var.public_ipv4
+  ip_id       = scaleway_instance_ip.public_ipv4
   name        = var.server_name
   state       = var.server_state
   type        = var.server_type
