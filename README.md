@@ -19,6 +19,7 @@ Use the following variables to setup your instance:
 - **server_name**: Instance name.
 - **server_state**: Indicate if instance should be running or be stopped.
 - **server_type**: Instance type.
+- **server_tag**: List of tag to apply to instance.
 
 ## Output variables
 
@@ -33,5 +34,4 @@ For now, there's no output variables.
   - Additional volumes.
   - Boot options.
   - Security groups.
-  - Tags.
   

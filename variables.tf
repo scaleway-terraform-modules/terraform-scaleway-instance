@@ -34,3 +34,8 @@ variable "server_type" {
   default     = "DEV1-S"
 }
 
+variable "server_tags" {
+  type        = list
+  description = "Server tags. Default to 'none"
+  default     = []
+}
