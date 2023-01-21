@@ -8,7 +8,7 @@ resource "scaleway_instance_ip" "this" {
 }
 
 resource "scaleway_instance_ip_reverse_dns" "this" {
-  count = var.enable_ipv4 == true ? 1 : 0
+  count = var.enable_public_ipv4 == true ? 1 : 0
 
   ip_id   = scaleway_instance_ip.this[count.index].id
   reverse = format("%s.%s", var.name, var.dns_zone)
@@ -26,9 +26,9 @@ resource "scaleway_instance_server" "this" {
   additional_volume_ids = var.additional_volume_ids
   # root_volume           = var.root_volume
 
-  enable_ipv4 = var.enable_ipv4
-  enable_ipv6 = var.enable_ipv6
-  ip_id       = var.enable_ipv4 == true ? scaleway_instance_ip.this[0].id : null
+  enable_dynamic_ip = var.enable_public_ipv4
+  enable_ipv6       = var.enable_ipv6
+  ip_id             = var.enable_public_ipv4 == true ? scaleway_instance_ip.this[0].id : null
   # private_network   = var.private_network
 
   boot_type     = var.boot_type
@@ -38,7 +38,7 @@ resource "scaleway_instance_server" "this" {
 }
 
 resource "scaleway_domain_record" "ip4" {
-  data     = var.enable_ipv4 == true ? scaleway_instance_server.this.public_ip : scaleway_instance_server.this.private_ip
+  data     = var.enable_public_ipv4 == true ? scaleway_instance_server.this.public_ip : scaleway_instance_server.this.private_ip
   dns_zone = var.dns_zone
   name     = var.name
   type     = "A"
