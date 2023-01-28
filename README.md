@@ -11,7 +11,7 @@ This repository is used to deploy an instance on scaleway using terraform.
 
 ```hcl
 module "my_instance" {
-  source  = "app.terraform.io/terra-art/sc_instance/scaleway"
+  source  = "benoit-garcia/security_group/instance"
   version = "1.0.1"
 
   instance_type = "PLAY2-PICO"
