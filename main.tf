@@ -45,7 +45,7 @@ resource "scaleway_domain_record" "ip4" {
 }
 
 resource "scaleway_domain_record" "ip6" {
-  count = var.enable_ipv6 == true ? 1 : 0
+  count = var.enable_ipv6 == true && var.state != "stopped" ? 1 : 0
 
   data     = scaleway_instance_server.this.ipv6_address
   dns_zone = var.dns_zone
