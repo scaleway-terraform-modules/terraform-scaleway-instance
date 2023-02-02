@@ -66,11 +66,11 @@ variable "enable_public_ipv4" {
   default     = false
 }
 
-# variable "private_network" {
-#   type    = string
-#   description = "Private network associated with the server."
-#   default = null
-# }
+variable "private_networks" {
+  type    = list(string)
+  description = "Private networks associated with the server."
+  default = []
+}
 
 # Start settings
 variable "boot_type" {

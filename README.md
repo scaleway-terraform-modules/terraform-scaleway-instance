@@ -65,6 +65,7 @@ module "my_instance" {
 | <a name="input_instance_type"></a> [instance_type](#input_instance_type) | Commercial type of the server. Default to 'DEV1-S'. Updates to this field will recreate a new resource. | `string` | `"DEV1-S"` | no |
 | <a name="input_name"></a> [name](#input_name) | Name of the server. | `string` | `null` | no |
 | <a name="input_placement_group_id"></a> [placement_group_id](#input_placement_group_id) | ID of the placement group the server is attached to. | `string` | `null` | no |
+| <a name="input_private_networks"></a> [private_networks](#input_private_networks) | Private networks associated with the server. | `list(string)` | `[]` | no |
 | <a name="input_security_group_id"></a> [security_group_id](#input_security_group_id) | ID of the security group the server is attached to. | `string` | `null` | no |
 | <a name="input_state"></a> [state](#input_state) | State of the server. Default to 'started'. Possible values are: 'started', 'stopped' or 'standby'. | `string` | `"started"` | no |
 | <a name="input_tags"></a> [tags](#input_tags) | Tags associated with the server and dedicated ip address. | `list(any)` | `[]` | no |

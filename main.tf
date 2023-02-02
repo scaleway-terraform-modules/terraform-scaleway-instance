@@ -29,7 +29,13 @@ resource "scaleway_instance_server" "this" {
   enable_dynamic_ip = var.enable_public_ipv4
   enable_ipv6       = var.enable_ipv6
   ip_id             = var.enable_public_ipv4 == true ? scaleway_instance_ip.this[0].id : null
-  # private_network   = var.private_network
+
+  dynamic "private_network" {
+    for_each = toset(var.private_networks)
+    content {
+      pn_id = private_network.value
+    }
+  }
 
   boot_type     = var.boot_type
   bootscript_id = var.bootscript_id
