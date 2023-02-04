@@ -62,3 +62,11 @@ module "my_instance" {
 | <a name="input_state"></a> [state](#input_state) | State of the server. Default to 'started'. Possible values are: 'started', 'stopped' or 'standby'. | `string` | `"started"` | no |
 | <a name="input_tags"></a> [tags](#input_tags) | Tags associated with the server and dedicated ip address. | `list(any)` | `[]` | no |
 <!-- END_TF_DOCS -->
+
+## Authors
+
+Module is maintained with help from [the community](https://github.com/scaleway-terraform-modules/terraform-scaleway-instance/graphs/contributors).
+
+## License
+
+Mozilla Public License 2.0 Licensed. See [LICENSE](https://github.com/scaleway-terraform-modules/.github/tree/master/LICENSE) for full details.
