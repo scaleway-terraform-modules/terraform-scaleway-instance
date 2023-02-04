@@ -25,8 +25,6 @@ module "my_instance" {
 }
 ```
 
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -34,12 +32,6 @@ module "my_instance" {
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 0.13 |
 | <a name="requirement_scaleway"></a> [scaleway](#requirement_scaleway) | >= 2.2.0 |
-
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_scaleway"></a> [scaleway](#provider_scaleway) | >= 2.2.0 |
 
 ## Resources
 
@@ -70,12 +62,3 @@ module "my_instance" {
 | <a name="input_state"></a> [state](#input_state) | State of the server. Default to 'started'. Possible values are: 'started', 'stopped' or 'standby'. | `string` | `"started"` | no |
 | <a name="input_tags"></a> [tags](#input_tags) | Tags associated with the server and dedicated ip address. | `list(any)` | `[]` | no |
 <!-- END_TF_DOCS -->
-
-## Known issues
-
-Module doesn't handle:
-
-- Configuring root volume.
-- Connecting the instannce to private networks.
-- Setting user data.
-  
