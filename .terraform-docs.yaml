@@ -7,10 +7,7 @@ recursive:
   enabled: false
 
 sections:
-  hide: []
-  show: [
-    "all"
-  ]
+  hide: ["providers"]
 
 output:
   file: "README.md"
