@@ -67,9 +67,9 @@ variable "enable_public_ipv4" {
 }
 
 variable "private_networks" {
-  type    = list(string)
+  type        = list(string)
   description = "Private networks associated with the server."
-  default = []
+  default     = []
 }
 
 # Start settings
@@ -106,3 +106,16 @@ variable "state" {
 #   description = "User data associated with the server. Use the cloud-init key to use cloud-init on your instance. You can define values using:\n- string\n- UTF-8 encoded file content using file\n- Binary files using filebase64."
 #   default = null
 # }
+
+# Location & Tenancy
+variable "project_id" {
+  description = "ID of the project the namespace is associated with. Ressource will be created in the project set at the provider level if null."
+  type        = string
+  default     = null
+}
+
+variable "zone" {
+  description = "The zone in which the instance should be created. Ressource will be created in the zone set at the provider level if null."
+  type        = string
+  default     = null
+}
