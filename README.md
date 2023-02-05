@@ -58,9 +58,11 @@ module "my_instance" {
 | <a name="input_name"></a> [name](#input_name) | Name of the server. | `string` | `null` | no |
 | <a name="input_placement_group_id"></a> [placement_group_id](#input_placement_group_id) | ID of the placement group the server is attached to. | `string` | `null` | no |
 | <a name="input_private_networks"></a> [private_networks](#input_private_networks) | Private networks associated with the server. | `list(string)` | `[]` | no |
+| <a name="input_project_id"></a> [project_id](#input_project_id) | ID of the project the namespace is associated with. Ressource will be created in the project set at the provider level if null. | `string` | `null` | no |
 | <a name="input_security_group_id"></a> [security_group_id](#input_security_group_id) | ID of the security group the server is attached to. | `string` | `null` | no |
 | <a name="input_state"></a> [state](#input_state) | State of the server. Default to 'started'. Possible values are: 'started', 'stopped' or 'standby'. | `string` | `"started"` | no |
 | <a name="input_tags"></a> [tags](#input_tags) | Tags associated with the server and dedicated ip address. | `list(any)` | `[]` | no |
+| <a name="input_zone"></a> [zone](#input_zone) | The zone in which the instance should be created. Ressource will be created in the zone set at the provider level if null. | `string` | `null` | no |
 <!-- END_TF_DOCS -->
 
 ## Authors

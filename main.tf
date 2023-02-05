@@ -5,6 +5,9 @@ moved {
 
 resource "scaleway_instance_ip" "this" {
   count = var.enable_public_ipv4 == true ? 1 : 0
+
+  project_id = var.project_id
+  zone       = var.zone
 }
 
 resource "scaleway_instance_ip_reverse_dns" "this" {
@@ -12,6 +15,7 @@ resource "scaleway_instance_ip_reverse_dns" "this" {
 
   ip_id   = scaleway_instance_ip.this[count.index].id
   reverse = format("%s.%s", var.name, var.dns_zone)
+  zone    = var.zone
 }
 
 resource "scaleway_instance_server" "this" {
@@ -41,6 +45,9 @@ resource "scaleway_instance_server" "this" {
   bootscript_id = var.bootscript_id
   state         = var.state
   #  user_data     = var.user_data
+
+  project_id = var.project_id
+  zone       = var.zone
 }
 
 resource "scaleway_domain_record" "ip4" {
