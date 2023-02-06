@@ -38,7 +38,16 @@ resource "scaleway_instance_server" "this" {
   tags               = var.tags
 
   additional_volume_ids = var.additional_volume_ids
-  # root_volume           = var.root_volume
+
+  dynamic "root_volume" {
+    for_each = var.root_volume != null ? [1] : []
+    content {
+      delete_on_termination = var.root_volume["delete_on_termination"]
+      size_in_gb            = var.root_volume["size_in_gb"]
+      volume_id             = var.root_volume["volume_id"]
+      volume_type           = var.root_volume["volume_type"]
+    }
+  }
 
   enable_dynamic_ip = var.enable_public_ipv4
   enable_ipv6       = var.enable_ipv6

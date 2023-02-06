@@ -1,6 +1,7 @@
 variable "image" {
   type        = string
-  description = "UUID or the label of the base image used by the server."
+  description = "UUID or the label of the base image used by the server. Must be null if `root_volume.volume_id` is used."
+  default     = null
 }
 
 variable "instance_type" {
@@ -47,10 +48,16 @@ variable "additional_volume_ids" {
   default     = []
 }
 
-# variable "root_volume" {
-#   type    = any
-#   default = null
-# }
+variable "root_volume" {
+  description = "Root volume attached to the server on creation. Updates to `root_volume.size_in_gb` will be ignored after the creation of the server."
+  type = object({
+    delete_on_termination = bool
+    size_in_gb            = number
+    volume_id             = optional(string)
+    volume_type           = optional(string)
+  })
+  default = null
+}
 
 # Network
 
