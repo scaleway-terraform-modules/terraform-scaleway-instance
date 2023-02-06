@@ -62,7 +62,7 @@ module "my_instance" {
 | <a name="input_root_volume"></a> [root_volume](#input_root_volume) | Root volume attached to the server on creation. Updates to `root_volume.size_in_gb` will be ignored after the creation of the server. | ```object({ delete_on_termination = bool size_in_gb = number volume_id = optional(string) volume_type = optional(string) })``` | `null` | no |
 | <a name="input_security_group_id"></a> [security_group_id](#input_security_group_id) | ID of the security group the server is attached to. | `string` | `null` | no |
 | <a name="input_state"></a> [state](#input_state) | State of the server. Default to 'started'. Possible values are: 'started', 'stopped' or 'standby'. | `string` | `"started"` | no |
-| <a name="input_tags"></a> [tags](#input_tags) | Tags associated with the server and dedicated ip address. | `list(any)` | `[]` | no |
+| <a name="input_tags"></a> [tags](#input_tags) | Tags associated with the server and dedicated ip address. | `list(string)` | `[]` | no |
 | <a name="input_zone"></a> [zone](#input_zone) | The zone in which the instance should be created. Ressource will be created in the zone set at the provider level if null. | `string` | `null` | no |
 <!-- END_TF_DOCS -->
 

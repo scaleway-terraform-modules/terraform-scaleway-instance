@@ -36,7 +36,7 @@ variable "security_group_id" {
 }
 
 variable "tags" {
-  type        = list(any)
+  type        = list(string)
   description = "Tags associated with the server and dedicated ip address."
   default     = []
 }
