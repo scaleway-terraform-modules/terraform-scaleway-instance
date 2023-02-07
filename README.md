@@ -64,6 +64,14 @@ module "my_instance" {
 | <a name="input_state"></a> [state](#input_state) | State of the server. Default to 'started'. Possible values are: 'started', 'stopped' or 'standby'. | `string` | `"started"` | no |
 | <a name="input_tags"></a> [tags](#input_tags) | Tags associated with the server and dedicated ip address. | `list(string)` | `[]` | no |
 | <a name="input_zone"></a> [zone](#input_zone) | The zone in which the instance should be created. Ressource will be created in the zone set at the provider level if null. | `string` | `null` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_ip4"></a> [ip4](#output_ip4) | IPv4 address of the intance. |
+| <a name="output_ip6"></a> [ip6](#output_ip6) | IPv6 address of the instance. |
+| <a name="output_name"></a> [name](#output_name) | Name of the instance. |
 <!-- END_TF_DOCS -->
 
 ## Authors
