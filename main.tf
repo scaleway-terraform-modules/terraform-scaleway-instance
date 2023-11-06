@@ -52,6 +52,7 @@ resource "scaleway_instance_server" "this" {
   enable_dynamic_ip = var.enable_public_ipv4
   enable_ipv6       = var.enable_ipv6
   ip_id             = var.enable_public_ipv4 == true ? scaleway_instance_ip.this[0].id : null
+  routed_ip_enabled = var.routed_ip_enabled
 
   dynamic "private_network" {
     for_each = toset(var.private_networks)
