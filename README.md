@@ -39,7 +39,9 @@ module "my_instance" {
 |------|------|
 | [scaleway_domain_record.ip4](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/domain_record) | resource |
 | [scaleway_domain_record.ip6](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/domain_record) | resource |
+| [scaleway_instance_ip.ipv6](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/instance_ip) | resource |
 | [scaleway_instance_ip.this](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/instance_ip) | resource |
+| [scaleway_instance_ip_reverse_dns.ipv6](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/instance_ip_reverse_dns) | resource |
 | [scaleway_instance_ip_reverse_dns.this](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/instance_ip_reverse_dns) | resource |
 | [scaleway_instance_server.this](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/instance_server) | resource |
 
