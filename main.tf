@@ -1,61 +1,3 @@
-moved {
-  from = scaleway_instance_ip.this
-  to   = scaleway_instance_ip.public_ipv4
-}
-
-moved {
-  from = scaleway_instance_ip_reverse_dns.this
-  to   = scaleway_instance_ip_reverse_dns.public_ipv4
-}
-
-moved {
-  from = scaleway_domain_record.ip4
-  to   = scaleway_domain_record.ipv4
-}
-
-moved {
-  from = scaleway_domain_record.ip6
-  to   = scaleway_domain_record.ipv6
-}
-
-locals {
-  requested_fqdn     = (var.hostname != null && var.domainname != null) ? format("%s.%s", var.hostname, var.domainname) : var.hostname
-  effective_hostname = var.domainname != null ? trimsuffix(trimsuffix(scaleway_instance_server.this.name, var.domainname), ".") : scaleway_instance_server.this.name
-  effective_fqdn     = var.domainname != null ? format("%s.%s", local.effective_hostname, var.domainname) : local.effective_hostname
-}
-
-resource "scaleway_instance_ip" "public_ipv4" {
-  count = var.enable_public_ipv4 ? 1 : 0
-
-  project_id = var.project_id
-  type       = var.routed_ip_enabled ? "routed_ipv4" : "nat"
-  zone       = var.zone
-}
-
-resource "scaleway_instance_ip_reverse_dns" "public_ipv4" {
-  count = var.enable_public_ipv4 && (var.domainname != null) ? 1 : 0
-
-  ip_id   = scaleway_instance_ip.public_ipv4[count.index].id
-  reverse = local.effective_fqdn
-  zone    = var.zone
-}
-
-resource "scaleway_instance_ip" "ipv6" {
-  count = var.enable_ipv6 && var.routed_ip_enabled ? 1 : 0
-
-  project_id = var.project_id
-  type       = "routed_ipv6"
-  zone       = var.zone
-}
-
-resource "scaleway_instance_ip_reverse_dns" "ipv6" {
-  count = var.enable_ipv6 && var.routed_ip_enabled && (var.domainname != null) ? 1 : 0
-
-  ip_id   = scaleway_instance_ip.ipv6[count.index].id
-  reverse = local.effective_fqdn
-  zone    = var.zone
-}
-
 resource "scaleway_instance_server" "this" {
   image = var.image
   type  = var.instance_type
@@ -100,22 +42,4 @@ resource "scaleway_instance_server" "this" {
 
   project_id = var.project_id
   zone       = var.zone
-}
-
-resource "scaleway_domain_record" "ipv4" {
-  count = var.domainname != null ? 1 : 0
-
-  data     = var.enable_public_ipv4 ? scaleway_instance_server.this.public_ip : scaleway_instance_server.this.private_ip
-  dns_zone = var.domainname
-  name     = local.effective_hostname
-  type     = "A"
-}
-
-resource "scaleway_domain_record" "ipv6" {
-  count = var.domainname != null && var.enable_ipv6 && var.state != "stopped" ? 1 : 0
-
-  data     = var.routed_ip_enabled ? one([for item in scaleway_instance_server.this.public_ips[*].address : item if can(regex(":", item))]) : scaleway_instance_server.this.ipv6_address
-  dns_zone = var.domainname
-  name     = local.effective_hostname
-  type     = "AAAA"
 }
