@@ -1,6 +1,21 @@
 moved {
-  from = scaleway_instance_ip.public_ipv4
-  to   = scaleway_instance_ip.this
+  from = scaleway_instance_ip.this
+  to   = scaleway_instance_ip.public_ipv4
+}
+
+moved {
+  from = scaleway_instance_ip_reverse_dns.this
+  to   = scaleway_instance_ip_reverse_dns.public_ipv4
+}
+
+moved {
+  from = scaleway_domain_record.ip4
+  to   = scaleway_domain_record.ipv4
+}
+
+moved {
+  from = scaleway_domain_record.ip6
+  to   = scaleway_domain_record.ipv6
 }
 
 locals {
@@ -9,7 +24,7 @@ locals {
   effective_fqdn     = var.domainname != null ? format("%s.%s", local.effective_hostname, var.domainname) : local.effective_hostname
 }
 
-resource "scaleway_instance_ip" "this" {
+resource "scaleway_instance_ip" "public_ipv4" {
   count = var.enable_public_ipv4 ? 1 : 0
 
   project_id = var.project_id
@@ -17,16 +32,12 @@ resource "scaleway_instance_ip" "this" {
   zone       = var.zone
 }
 
-resource "scaleway_instance_ip_reverse_dns" "this" {
+resource "scaleway_instance_ip_reverse_dns" "public_ipv4" {
   count = var.enable_public_ipv4 && (var.domainname != null) ? 1 : 0
 
-  ip_id   = scaleway_instance_ip.this[count.index].id
+  ip_id   = scaleway_instance_ip.public_ipv4[count.index].id
   reverse = local.effective_fqdn
   zone    = var.zone
-
-  depends_on = [
-    scaleway_domain_record.ip4,
-  ]
 }
 
 resource "scaleway_instance_ip" "ipv6" {
@@ -71,7 +82,7 @@ resource "scaleway_instance_server" "this" {
   routed_ip_enabled = var.routed_ip_enabled
 
   ip_ids = tolist([
-    var.enable_public_ipv4 ? scaleway_instance_ip.this[0].id : null,
+    var.enable_public_ipv4 ? scaleway_instance_ip.public_ipv4[0].id : null,
     var.enable_ipv6 && var.routed_ip_enabled ? scaleway_instance_ip.ipv6[0].id : null,
   ])
 
@@ -91,7 +102,7 @@ resource "scaleway_instance_server" "this" {
   zone       = var.zone
 }
 
-resource "scaleway_domain_record" "ip4" {
+resource "scaleway_domain_record" "ipv4" {
   count = var.domainname != null ? 1 : 0
 
   data     = var.enable_public_ipv4 ? scaleway_instance_server.this.public_ip : scaleway_instance_server.this.private_ip
@@ -100,7 +111,7 @@ resource "scaleway_domain_record" "ip4" {
   type     = "A"
 }
 
-resource "scaleway_domain_record" "ip6" {
+resource "scaleway_domain_record" "ipv6" {
   count = var.domainname != null && var.enable_ipv6 && var.state != "stopped" ? 1 : 0
 
   data     = var.routed_ip_enabled ? one([for item in scaleway_instance_server.this.public_ips[*].address : item if can(regex(":", item))]) : scaleway_instance_server.this.ipv6_address
