@@ -76,7 +76,7 @@ variable "enable_public_ipv4" {
 variable "routed_ip_enabled" {
   type        = bool
   description = "Determine if the instance will support routed ips only. Changing it to true will migrate the server and its IP to routed type."
-  default     = false
+  default     = true
 }
 
 variable "private_networks" {
