@@ -44,6 +44,8 @@ module "my_instance" {
 | [scaleway_instance_ip_reverse_dns.ipv6](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/instance_ip_reverse_dns) | resource |
 | [scaleway_instance_ip_reverse_dns.public_ipv4](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/instance_ip_reverse_dns) | resource |
 | [scaleway_instance_server.this](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/instance_server) | resource |
+| [scaleway_instance_private_nic.this](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/data-sources/instance_private_nic) | data source |
+| [scaleway_ipam_ip.private_ipv4](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/data-sources/ipam_ip) | data source |
 
 ## Inputs
 
