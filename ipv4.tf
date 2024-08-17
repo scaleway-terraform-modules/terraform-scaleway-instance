@@ -29,10 +29,28 @@ resource "scaleway_instance_ip_reverse_dns" "public_ipv4" {
   zone    = var.zone
 }
 
-resource "scaleway_domain_record" "ipv4" {
-  count = var.domainname != null ? 1 : 0
+data "scaleway_instance_private_nic" "this" {
+  count = length(var.private_networks)
 
-  data     = var.enable_public_ipv4 ? scaleway_instance_server.this.public_ip : scaleway_instance_server.this.private_ip
+  server_id          = scaleway_instance_server.this.id
+  private_network_id = var.private_networks[count.index]
+}
+
+
+data "scaleway_ipam_ip" "private_ipv4" {
+  count = length(var.private_networks)
+
+  type = "ipv4"
+  resource {
+    id   = data.scaleway_instance_private_nic.this[count.index].id
+    type = "instance_private_nic"
+  }
+}
+
+resource "scaleway_domain_record" "ipv4" {
+  count = var.enable_public_ipv4 && (var.domainname != null) ? 1 : length(var.private_networks)
+
+  data     = var.enable_public_ipv4 ? scaleway_instance_server.this.public_ip : data.scaleway_ipam_ip.private_ipv4[count.index].address
   dns_zone = var.domainname
   name     = local.effective_hostname
   type     = "A"
