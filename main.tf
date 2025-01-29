@@ -20,12 +20,11 @@ resource "scaleway_instance_server" "this" {
   }
 
   enable_dynamic_ip = var.enable_public_ipv4
-  enable_ipv6       = var.routed_ip_enabled ? null : var.enable_ipv6
-  routed_ip_enabled = var.routed_ip_enabled
+  enable_ipv6       = null
 
   ip_ids = compact(tolist([
     var.enable_public_ipv4 ? scaleway_instance_ip.public_ipv4[0].id : null,
-    var.enable_ipv6 && var.routed_ip_enabled ? scaleway_instance_ip.ipv6[0].id : null,
+    var.enable_ipv6 ? scaleway_instance_ip.ipv6[0].id : null,
   ]))
 
   dynamic "private_network" {

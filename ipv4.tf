@@ -17,7 +17,7 @@ resource "scaleway_instance_ip" "public_ipv4" {
   count = var.enable_public_ipv4 ? 1 : 0
 
   project_id = var.project_id
-  type       = var.routed_ip_enabled ? "routed_ipv4" : "nat"
+  type       = "routed_ipv4"
   zone       = var.zone
 }
 
