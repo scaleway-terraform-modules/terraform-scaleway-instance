@@ -50,7 +50,7 @@ data "scaleway_ipam_ip" "private_ipv4" {
 resource "scaleway_domain_record" "ipv4" {
   count = var.enable_public_ipv4 && (var.domainname != null) ? 1 : length(var.private_networks)
 
-  data     = var.enable_public_ipv4 ? scaleway_instance_server.this.public_ip : data.scaleway_ipam_ip.private_ipv4[count.index].address
+  data     = var.enable_public_ipv4 ? scaleway_instance_ip.public_ipv4[count.index].address : data.scaleway_ipam_ip.private_ipv4[count.index].address
   dns_zone = var.domainname
   name     = local.effective_hostname
   type     = "A"
