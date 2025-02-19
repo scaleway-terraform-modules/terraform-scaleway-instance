@@ -67,6 +67,7 @@ module "my_instance" {
 | <a name="input_security_group_id"></a> [security_group_id](#input_security_group_id) | ID of the security group the server is attached to. | `string` | `null` | no |
 | <a name="input_state"></a> [state](#input_state) | State of the server. Default to 'started'. Possible values are: 'started', 'stopped' or 'standby'. | `string` | `"started"` | no |
 | <a name="input_tags"></a> [tags](#input_tags) | Tags associated with the server and dedicated ip address. | `list(string)` | `[]` | no |
+| <a name="input_user_data"></a> [user_data](#input_user_data) | User data associated with the server. Use the cloud-init key to use cloud-init on your instance. You can define values using: - string - UTF-8 encoded file content using file - Binary files using filebase64. | `any` | `null` | no |
 | <a name="input_zone"></a> [zone](#input_zone) | The zone in which the instance should be created. Ressource will be created in the zone set at the provider level if null. | `string` | `null` | no |
 
 ## Outputs

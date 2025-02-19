@@ -37,7 +37,7 @@ resource "scaleway_instance_server" "this" {
   boot_type     = var.boot_type
   bootscript_id = var.bootscript_id
   state         = var.state
-  #  user_data     = var.user_data
+  user_data     = var.user_data
 
   project_id = var.project_id
   zone       = var.zone

@@ -108,11 +108,11 @@ variable "state" {
   }
 }
 
-# variable "user_data" {
-#   type    = any
-#   description = "User data associated with the server. Use the cloud-init key to use cloud-init on your instance. You can define values using:\n- string\n- UTF-8 encoded file content using file\n- Binary files using filebase64."
-#   default = null
-# }
+variable "user_data" {
+  type        = any
+  description = "User data associated with the server. Use the cloud-init key to use cloud-init on your instance. You can define values using:\n- string\n- UTF-8 encoded file content using file\n- Binary files using filebase64."
+  default     = null
+}
 
 # Location & Tenancy
 variable "project_id" {
