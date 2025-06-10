@@ -12,3 +12,13 @@ output "name" {
   description = "Name of the instance."
   value       = scaleway_instance_server.this.name
 }
+
+output "id" {
+  description = "ID of the instance."
+  value       = scaleway_instance_server.this.id
+}
+
+output "root_volume" {
+  description = "ID of the root volume."
+  value       = scaleway_instance_server.this.root_volume
+}

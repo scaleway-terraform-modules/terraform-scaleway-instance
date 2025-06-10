@@ -74,9 +74,11 @@ module "my_instance" {
 
 | Name | Description |
 |------|-------------|
+| <a name="output_id"></a> [id](#output_id) | ID of the instance. |
 | <a name="output_ip4"></a> [ip4](#output_ip4) | IPv4 address of the intance. |
 | <a name="output_ip6"></a> [ip6](#output_ip6) | IPv6 address of the instance. |
 | <a name="output_name"></a> [name](#output_name) | Name of the instance. |
+| <a name="output_root_volume"></a> [root_volume](#output_root_volume) | ID of the root volume. |
 <!-- END_TF_DOCS -->
 
 ## Authors
