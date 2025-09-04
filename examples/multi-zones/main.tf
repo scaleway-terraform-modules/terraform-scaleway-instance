@@ -15,8 +15,7 @@ locals {
 }
 
 module "instances" {
-  source  = "scaleway-terraform-modules/instance/scaleway"
-  version = "3.2.1"
+  source = "../../"
 
   for_each = local.instances
 
