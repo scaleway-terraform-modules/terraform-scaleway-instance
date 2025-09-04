@@ -38,7 +38,7 @@ module "instances" {
   enable_public_ipv4 = true
 }
 
-resource "scaleway_instance_security_group" "perco_master_security_group"{
+resource "scaleway_instance_security_group" "instances_security_group" {
   for_each = local.unique_zones
 
   name = "instance-sg"
