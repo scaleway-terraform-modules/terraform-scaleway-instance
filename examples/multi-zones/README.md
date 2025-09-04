@@ -22,7 +22,7 @@ The example uses a local configuration to define instances across zones:
 
 ```hcl
 locals {
-  perco_masters = {
+  instances = {
     "0" = {
       name = "instance-0"
       zone = "fr-par-1"
@@ -40,7 +40,7 @@ locals {
 Security groups are created dynamically for each unique zone:
 
 ```hcl
-resource "scaleway_instance_security_group" "perco_master_security_group"{
+resource "scaleway_instance_security_group" "instances_security_group" {
   for_each = local.unique_zones
   
   zone = each.value
