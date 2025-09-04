@@ -1,5 +1,5 @@
 locals {
-  perco_masters = {
+  instances = {
     "0" = {
       name = "instance-0"
       zone = "fr-par-1"
@@ -10,7 +10,7 @@ locals {
     }
   }
   unique_zones = toset([
-    for instance in local.perco_masters : instance.zone
+    for instance in local.instances : instance.zone
   ])
 }
 
@@ -18,14 +18,14 @@ module "instances" {
   source  = "scaleway-terraform-modules/instance/scaleway"
   version = "3.2.1"
 
-  for_each = local.perco_masters
+  for_each = local.instances
 
   instance_type = "PLAY2-NANO" # 2 vCPU, 8GB RAM
   image         = "debian_bookworm"
 
   # Network
   private_networks  = []
-  security_group_id = scaleway_instance_security_group.perco_master_security_group[each.value.zone].id
+  security_group_id = scaleway_instance_security_group.instances_security_group[each.value.zone].id
   zone              = each.value.zone
 
   additional_volume_ids = null
