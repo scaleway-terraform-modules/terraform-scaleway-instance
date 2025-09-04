@@ -41,7 +41,7 @@ module "instances" {
 resource "scaleway_instance_security_group" "perco_master_security_group"{
   for_each = local.unique_zones
 
-  name        = "instance-sg"
+  name = "instance-sg"
 
   # Default policies - drop everything except explicitly allowed
   inbound_default_policy  = "drop"
