@@ -34,6 +34,7 @@ data "scaleway_instance_private_nic" "this" {
 
   server_id          = scaleway_instance_server.this.id
   private_network_id = var.private_networks[count.index]
+  zone               = var.zone
 }
 
 
