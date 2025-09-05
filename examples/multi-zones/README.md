@@ -69,6 +69,5 @@ resource "scaleway_instance_security_group" "instances_security_group" {
 
 - `main.tf`: Main configuration with instance and security group definitions
 - `versions.tf`: Terraform and provider version constraints
-- `mise.toml`: Development environment configuration
 
 This example validates that the module correctly handles multi-zone deployments and demonstrates best practices for zone-aware infrastructure deployment on Scaleway.
