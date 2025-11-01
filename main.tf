@@ -20,7 +20,6 @@ resource "scaleway_instance_server" "this" {
   }
 
   enable_dynamic_ip = var.enable_public_ipv4
-  enable_ipv6       = null
 
   ip_ids = compact(tolist([
     var.enable_public_ipv4 ? scaleway_instance_ip.public_ipv4[0].id : null,
