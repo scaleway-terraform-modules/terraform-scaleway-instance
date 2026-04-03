@@ -63,6 +63,7 @@ module "my_instance" {
 | <a name="input_placement_group_id"></a> [placement_group_id](#input_placement_group_id) | ID of the placement group the server is attached to. | `string` | `null` | no |
 | <a name="input_private_networks"></a> [private_networks](#input_private_networks) | Private networks associated with the server. | `list(string)` | `[]` | no |
 | <a name="input_project_id"></a> [project_id](#input_project_id) | ID of the project the namespace is associated with. Ressource will be created in the project set at the provider level if null. | `string` | `null` | no |
+| <a name="input_protected"></a> [protected](#input_protected) | Whether the server is protected against accidental deletion. | `bool` | `false` | no |
 | <a name="input_root_volume"></a> [root_volume](#input_root_volume) | Root volume attached to the server on creation. Updates to `root_volume.size_in_gb` will be ignored after the creation of the server. | ```object({ delete_on_termination = bool size_in_gb = number volume_id = optional(string) volume_type = optional(string) })``` | `null` | no |
 | <a name="input_security_group_id"></a> [security_group_id](#input_security_group_id) | ID of the security group the server is attached to. | `string` | `null` | no |
 | <a name="input_state"></a> [state](#input_state) | State of the server. Default to 'started'. Possible values are: 'started', 'stopped' or 'standby'. | `string` | `"started"` | no |

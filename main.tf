@@ -38,6 +38,8 @@ resource "scaleway_instance_server" "this" {
   state         = var.state
   user_data     = var.user_data
 
+  protected = var.protected
+
   project_id = var.project_id
   zone       = var.zone
 }

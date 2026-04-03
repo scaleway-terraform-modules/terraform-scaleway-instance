@@ -114,6 +114,12 @@ variable "user_data" {
   default     = null
 }
 
+variable "protected" {
+  type        = bool
+  description = "Whether the server is protected against accidental deletion."
+  default     = false
+}
+
 # Location & Tenancy
 variable "project_id" {
   description = "ID of the project the namespace is associated with. Ressource will be created in the project set at the provider level if null."
