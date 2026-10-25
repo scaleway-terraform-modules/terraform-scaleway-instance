@@ -5,7 +5,7 @@ terraform {
       version = "~> 2.59"
     }
   }
-  required_version = "~> 1.10"
+  required_version = ">= 1.11"
 }
 
 provider "scaleway" {}
