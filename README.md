@@ -12,7 +12,7 @@ This repository is used to deploy an instance on scaleway using terraform.
 ```hcl
 module "my_instance" {
   source  = "scaleway-terraform-modules/instance/scaleway"
-  version = "2.0.0"
+  version = "~> 3.3"
 
   instance_type = "PLAY2-PICO"
   image         = "fr-par-2/3f9ace44-c310-4a9e-b28f-960b9c7fc848"
