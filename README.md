@@ -30,7 +30,7 @@ module "my_instance" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.3 |
+| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.11 |
 | <a name="requirement_scaleway"></a> [scaleway](#requirement_scaleway) | >= 2.61.0 |
 
 ## Resources
